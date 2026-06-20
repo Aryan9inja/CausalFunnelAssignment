@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Event from '../models/Event.js';
 
 /**
@@ -113,3 +114,20 @@ export async function getHeatmap(req, res) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+/**
+ * Health check endpoint reporting service and database readiness.
+ */
+export async function checkHealth(req, res) {
+  const dbConnected = mongoose.connection.readyState === 1;
+  const status = dbConnected ? 'ok' : 'unhealthy';
+  const statusCode = dbConnected ? 200 : 503;
+
+  return res.status(statusCode).json({
+    status,
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    database: dbConnected ? 'connected' : 'disconnected'
+  });
+}
+

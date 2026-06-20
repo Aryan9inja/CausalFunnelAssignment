@@ -14,6 +14,10 @@ app.use(express.json());
 
 // Database connection check middleware
 app.use((req, res, next) => {
+  // Allow health endpoint to process even if database is offline to report status code
+  if (req.path.endsWith('/health')) {
+    return next();
+  }
   if (mongoose.connection.readyState !== 1) {
     return res.status(503).json({
       error: 'Database connection is not established. Please verify that your local MongoDB server is running.'

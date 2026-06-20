@@ -81,6 +81,7 @@ user-analytics/
 | `POST` | `/api/events` | Accepts and validates a single tracking event, storing it in MongoDB. |
 | `GET` | `/api/sessions` | Retrieves distinct sessions aggregated with event counts and latest active timestamps (sorted newest first). |
 | `GET` | `/api/sessions/:session_id/events` | Retrieves the chronological timeline of events for a single session. |
+| `GET` | `/api/health` | Reports service status, server uptime, and database connectivity. |
 | `GET` | `/api/heatmap?page_url=...` | Retrieves only click coordinates `(x, y)` recorded for a specific page URL. |
 
 ---

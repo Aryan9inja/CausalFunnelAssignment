@@ -3,11 +3,13 @@ import {
   createEvent,
   getSessions,
   getSessionEvents,
-  getHeatmap
+  getHeatmap,
+  checkHealth
 } from '../controllers/eventController.js';
 
 const router = express.Router();
 
+router.get('/health', checkHealth);
 router.post('/events', createEvent);
 router.get('/sessions', getSessions);
 router.get('/sessions/:session_id/events', getSessionEvents);
