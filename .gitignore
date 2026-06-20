@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+/tracker/node_modules/
+/server/node_modules/
+/dashboard/node_modules/
+
+# Next.js build
+/dashboard/.next/
+/dashboard/out/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/server/.env
+/dashboard/.env
+/dashboard/.env.local
+
+# Logs and system files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
