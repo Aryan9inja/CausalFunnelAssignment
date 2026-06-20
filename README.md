@@ -49,18 +49,22 @@ user-analytics/
 ├── demo/
 │   └── index.html         # Test page loading the tracker script
 ├── tracker/
-│   └── tracker.js         # IIFE tracking script
+│   └── tracker.md         # Reference file pointing to the static tracker
 ├── server/
-│   ├── index.js           # Express + MongoDB backend application
+│   ├── index.js           # Express + MongoDB backend entry point
+│   ├── db.js              # MongoDB database connector and seeding functions
 │   ├── package.json       # Backend script definitions & dependencies
 │   ├── .env               # Active backend environment configuration
 │   └── .env.example       # Example server configuration template
 ├── dashboard/
+│   ├── public/
+│   │   └── tracker.js     # Centrally hosted tracking script
 │   ├── app/
 │   │   ├── page.tsx       # Sessions Overview page (Table list)
 │   │   ├── layout.tsx     # Site frame layout (Navbar container)
 │   │   ├── heatmap/       # Heatmap visualization page
-│   │   └── sessions/      # Timeline-based user journey routes
+│   │   ├── sessions/      # Timeline-based user journey routes
+│   │   └── api/config/    # Dynamic config endpoint serving tracker base variables
 │   ├── package.json       # Next.js configurations & scripts
 │   ├── tsconfig.json      # TypeScript compiler specifications
 │   ├── .env               # Active frontend environment configurations
