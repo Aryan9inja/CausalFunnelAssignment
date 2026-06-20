@@ -5,7 +5,7 @@ This is a clean, minimal, full-stack User Analytics application scaffolded as a 
 ---
 
 ## Tech Stack
-* **Tracking Script**: Vanilla JS (IIFE) — Zero dependencies, self-executing, easy to embed via a single `<script>` tag.
+* **Tracking Script**: Vanilla JS (IIFE) — Zero dependencies, self-executing, easy to embed via a single `<script>` tag. (For local deployment, please enforce API URL config in `tracker.js` to point to your backend server.)
 * **Backend**: Node.js + Express + Mongoose — Standard, lightweight routing framework coupled with a robust MongoDB object-document model wrapper.
 * **Database**: MongoDB — Document-based structure ideal for high-volume, semi-structured event streams (e.g., page views and click coordinates).
 * **Dashboard**: Next.js (App Router) + TypeScript + Tailwind CSS — Seamless page routing, clean layouts, and reactive interactive state management.
