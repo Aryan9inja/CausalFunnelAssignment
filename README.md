@@ -63,8 +63,7 @@ user-analytics/
 │   │   ├── page.tsx       # Sessions Overview page (Table list)
 │   │   ├── layout.tsx     # Site frame layout (Navbar container)
 │   │   ├── heatmap/       # Heatmap visualization page
-│   │   ├── sessions/      # Timeline-based user journey routes
-│   │   └── api/config/    # Dynamic config endpoint serving tracker base variables
+│   │   └── sessions/      # Timeline-based user journey routes
 │   ├── package.json       # Next.js configurations & scripts
 │   ├── tsconfig.json      # TypeScript compiler specifications
 │   ├── .env               # Active frontend environment configurations

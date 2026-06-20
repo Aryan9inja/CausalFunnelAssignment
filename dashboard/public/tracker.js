@@ -1,22 +1,6 @@
-(async function() {
-  const scriptElement = document.currentScript;
-  let apiBaseUrl = 'http://localhost:4000'; // Default fallback
-
-  // Dynamically resolve configuration from Next.js server using script source origin
-  if (scriptElement && scriptElement.src) {
-    try {
-      const dashboardOrigin = new URL(scriptElement.src).origin;
-      const response = await fetch(`${dashboardOrigin}/api/config`);
-      if (response.ok) {
-        const config = await response.json();
-        if (config.apiBaseUrl) {
-          apiBaseUrl = config.apiBaseUrl;
-        }
-      }
-    } catch (error) {
-      console.warn('Tracker could not fetch configuration from dashboard, falling back to default:', error);
-    }
-  }
+(function() {
+  // Configurable base API URL (default: http://localhost:4000)
+  const API_BASE_URL = 'http://localhost:4000';
 
   // UUID v4 generator with fallback if crypto.randomUUID is unavailable
   function generateUUID() {
@@ -39,7 +23,7 @@
 
   // Helper function to send events to backend (fire-and-forget, log errors)
   function sendEvent(eventData) {
-    fetch(`${apiBaseUrl}/api/events`, {
+    fetch(`${API_BASE_URL}/api/events`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
