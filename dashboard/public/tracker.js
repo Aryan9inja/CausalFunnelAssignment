@@ -1,6 +1,6 @@
 (function() {
-  // Configurable base API URL (default: http://localhost:4000)
-  const API_BASE_URL = 'http://localhost:4000';
+  // Configurable base API URL (change to local development URL if needed)
+  const API_BASE_URL = 'https://user-analytics-api-iaz3.onrender.com';
 
   // UUID v4 generator with fallback if crypto.randomUUID is unavailable
   function generateUUID() {
