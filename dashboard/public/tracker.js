@@ -1,64 +1,71 @@
-(function() {
+(function () {
   // Configurable base API URL (change to local development URL if needed)
-  const API_BASE_URL = 'https://user-analytics-api-iaz3.onrender.com';
+  const API_BASE_URL =
+    "https://causalfunnelassignment-production.up.railway.app";
 
   // UUID v4 generator with fallback if crypto.randomUUID is unavailable
   function generateUUID() {
-    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
       return crypto.randomUUID();
     }
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        const r = (Math.random() * 16) | 0;
+        const v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      },
+    );
   }
 
   // Retrieve or initialize session_id in localStorage
-  let sessionId = localStorage.getItem('session_id');
+  let sessionId = localStorage.getItem("session_id");
   if (!sessionId) {
     sessionId = generateUUID();
-    localStorage.setItem('session_id', sessionId);
+    localStorage.setItem("session_id", sessionId);
   }
 
   // Helper function to send events to backend (fire-and-forget, log errors)
   function sendEvent(eventData) {
     fetch(`${API_BASE_URL}/api/events`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(eventData),
-      mode: 'cors'
+      mode: "cors",
     })
-    .then(response => {
-      if (!response.ok) {
-        console.error('Tracker received non-OK response from API:', response.status);
-      }
-    })
-    .catch(error => {
-      console.error('Failed to send tracking event to API:', error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          console.error(
+            "Tracker received non-OK response from API:",
+            response.status,
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to send tracking event to API:", error);
+      });
   }
 
   // Track page view event immediately on load
   const pageViewEvent = {
     session_id: sessionId,
-    event_type: 'page_view',
+    event_type: "page_view",
     page_url: window.location.href,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
   sendEvent(pageViewEvent);
 
   // Track click events at the document level
-  document.addEventListener('click', function(event) {
+  document.addEventListener("click", function (event) {
     const clickEvent = {
       session_id: sessionId,
-      event_type: 'click',
+      event_type: "click",
       page_url: window.location.href,
       timestamp: new Date().toISOString(),
       x: event.clientX,
-      y: event.clientY
+      y: event.clientY,
     };
     sendEvent(clickEvent);
   });
